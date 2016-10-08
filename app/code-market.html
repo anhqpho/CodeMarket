@@ -1,6 +1,7 @@
 <link rel="import" href="bower_components/note-app/common/note-app/na-elements.html">
 <link rel="import" href="bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 <link rel="import" href="bower_components/polymerfire/polymerfire.html">
+<link rel="import" href="bower_components/paper-input/paper-input.html">
 
 <dom-module id="code-market">
   <template>
@@ -22,7 +23,10 @@
         provider="google" 
         signed-in="{{signedIn}}" 
         user="{{user}}">
-    </firebase-auth> 
+      </firebase-auth>
+
+      <paper-input label="Input label"></paper-input>
+
   </template>
    
   <script>
