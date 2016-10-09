@@ -5,6 +5,8 @@
 <link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="bower_components/paper-tabs/paper-tabs-icons.html">
 <link rel="import" href="bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
+
 <dom-module id="code-market">
   <template>
       <style>
@@ -44,16 +46,27 @@
       </paper-input>
 
       <paper-input
-        label="Summary about yourself">
+        label="Brief Introduction">
       </paper-input>
 
-      <paper-checkbox checked>
-         "I am a project proposer"
-      </paper-checkbox>
+      <paper-toggle-button
+        checked="{{devMode}}">
+        I am a developer
+      </paper-toggle-button>
 
-      <paper-checkbox checked>
-         "I am a developer"
-      </paper-checkbox>
+      <div id="skillSet" hidden$="[[!devMode]]">
+          <paper-checkbox>iOS App Dev</paper-checkbox>
+          <paper-checkbox>Swift</paper-checkbox>
+          <paper-checkbox>HTML + CSS</paper-checkbox>
+          <paper-checkbox>SQL</paper-checkbox>
+          <paper-checkbox>Java</paper-checkbox>
+          <paper-checkbox>JavaScript</paper-checkbox>
+          <paper-checkbox>Python</paper-checkbox>
+          <paper-checkbox>Android App Dev</paper-checkbox>
+          <paper-checkbox>Web App</paper-checkbox>
+          <paper-checkbox>C + C++</paper-checkbox>
+      </div>
+
   </template>
 
   <script>
