@@ -47,6 +47,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta name="msapplication-TileColor" content="#3f51b5">
     <meta name="msapplication-tap-highlight" content="no">
 
+    <!-- Nav Bar -->
+    <script src="webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="app-layout/app-toolbar/app-toolbar.html">
+    <link rel="import" href="paper-tabs/paper-tabs-icons.html">
+    <link rel="import" href="paper-tabs/paper-tab.html">
+
     <script>
       // Setup Polymer options
       window.Polymer = {
@@ -97,12 +103,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         min-height: 100vh;
         background-color: #eeeeee;
       }
-      paper-tabs {
-        background: #03a9f4;
+      app-toolbar {
+        background-color: #1E88E5;
+        font-family: 'Roboto', Helvetica, sans-serif;
+        color: white;
+        --app-toolbar-font-size: 24px;
       }
-      paper-tabs::shadow #selectionBar {
-        background: #e040fb;
+      paper-tab {
+        
       }
+
 
     </style>
     <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
@@ -111,16 +121,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <link rel="import" href="bower_components/polymerfire/firebase-app.html">
     <link rel="import" href="code-market.html">
 
-    <paper-tabs selected="0">
-      <paper-tab>CodeMarket</paper-tab>
-      <paper-tab>Marketplace</paper-tab>
-      <paper-tab>Projects</paper-tab>
-      <paper-tab>Certification</paper-tab>
-      <paper-tab>UserName</paper-tab>
-    </paper-tabs>
 
   </head>
   <body>
+    <!-- Nav Bar. Username is just a palceholder for now. -->
+  <app-header id="header" effects="waterfall" fixed condenses>
+      <app-toolbar>
+        <paper-icon-button icon="menu"></paper-icon-button>
+        <paper-tabs selected="0">
+          <paper-tab>CodeMarket</paper-tab>
+          <paper-tab>Marketplace</paper-tab>
+          <paper-tab>Projects</paper-tab>
+          <paper-tab>Certification</paper-tab>
+        </paper-tabs>
+        <paper-tab>Username</paper-tab>
+        <paper-icon-button icon="search"></paper-icon-button>
+      </app-toolbar>
+    </app-header>
+
     <platinum-sw-register
         auto-register
         skip-waiting

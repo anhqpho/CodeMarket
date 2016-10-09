@@ -5,13 +5,13 @@
 <link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="bower_components/paper-tabs/paper-tabs-icons.html">
 <link rel="import" href="bower_components/paper-tabs/paper-tab.html">
-
 <dom-module id="code-market">
   <template>
       <style>
 
       </style>
 
+      <!-- Leaving here for now until sign out button is implemented. Sign-in breaks when I remove the NA stuff. -->
       <na-toolbar
         signed-in="[[signedIn]]"
         on-sign-out="signOut">
@@ -54,7 +54,6 @@
       <paper-checkbox checked>
          "I am a developer"
       </paper-checkbox>
-
   </template>
 
   <script>
