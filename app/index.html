@@ -14,9 +14,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>Code Market</title> 
-      <meta name="description" 
-        content="Time to sell some codes"> 
+    <title>Code Market</title>
+      <meta name="description"
+        content="Time to sell some codes">
 
     <link rel="icon" href="/images/favicon.ico">
 
@@ -97,12 +97,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         min-height: 100vh;
         background-color: #eeeeee;
       }
+      paper-tabs {
+        background: #03a9f4;
+      }
+      paper-tabs::shadow #selectionBar {
+        background: #e040fb;
+      }
+
     </style>
     <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="bower_components/web-animations-js/web-animations.min.js"></script>
     <link rel="import" href="bower_components/platinum-sw/platinum-sw-elements.html">
     <link rel="import" href="bower_components/polymerfire/firebase-app.html">
     <link rel="import" href="code-market.html">
+
+    <paper-tabs selected="0">
+      <paper-tab>CodeMarket</paper-tab>
+      <paper-tab>Marketplace</paper-tab>
+      <paper-tab>Projects</paper-tab>
+      <paper-tab>Certification</paper-tab>
+      <paper-tab>UserName</paper-tab>
+    </paper-tabs>
+
   </head>
   <body>
     <platinum-sw-register
@@ -117,8 +133,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </platinum-sw-register>
 
     <firebase-app
-        name="CodeMarket" 
-        api-key="AIzaSyCY1eIiLYwrLDikomyCasoBjSeaAn5SJoU" 
+        name="CodeMarket"
+        api-key="AIzaSyCY1eIiLYwrLDikomyCasoBjSeaAn5SJoU"
         auth-domain="codemarket-45ea5.firebaseapp.com"
         database-url="https://codemarket-45ea5.firebaseio.com">
     </firebase-app>
