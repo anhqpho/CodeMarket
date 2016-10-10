@@ -18,7 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         @apply(--layout-horizontal);
         @apply(--layout-center);
-        background-color: var(--paper-purple-500);
+        background-color: #1E88E5;
         color: var(--paper-purple-50);
         padding: 6px 8px;
         --paper-icon-button-disabled: {
@@ -47,10 +47,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
     </style>
-    <iron-icon icon="bookmark"></iron-icon>
-    <h1>Notes</h1>
-    <iron-icon icon="cloud" hidden$="[[!online]]"></iron-icon>
-    <iron-icon icon="cloud-off" hidden$="[[online]]"></iron-icon>
+    <app-header id="header" effects="waterfall" fixed condenses>
+        <app-toolbar>
+          <paper-icon-button icon="menu"></paper-icon-button>
+          <paper-tabs selected="0">
+            <paper-tab>CodeMarket</paper-tab>
+            <paper-tab>Marketplace</paper-tab>
+            <paper-tab>Projects</paper-tab>
+            <paper-tab>Certification</paper-tab>
+          </paper-tabs>
+          <paper-tab>Username</paper-tab>
+          <paper-icon-button icon="search"></paper-icon-button>
+        </app-toolbar>
+      </app-header>
+
     <paper-icon-button
         icon="[[computeLockIcon(signedIn)]]"
         disabled="[[!signedIn]]"
