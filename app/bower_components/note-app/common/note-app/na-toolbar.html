@@ -53,13 +53,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <paper-tabs id="main-tabs" selected="{{selected}}" no-ba>
-      <paper-tab name="p1">CodeMarket</paper-tab>
-      <paper-tab name="p2">Inventory</paper-tab>
-      <paper-tab name ="p3">Certification</paper-tab>
-      <paper-tab name ="p4">Profile</paper-tab>
-    </paper-tabs>
-      
+    
+        <paper-tabs id="tabs" selected="{{tabSelected}}">
+          <paper-tab name="p1">CodeMarket</paper-tab>
+          <paper-tab name="p2">Inventory</paper-tab>
+          <paper-tab name ="p3">Certification</paper-tab>
+          <paper-tab name ="p4">Profile</paper-tab>
+        </paper-tabs>
+    
+
     <span style="flex: 1;"></span>
     <paper-icon-button icon="settings" class="first"></paper-icon-button>
     <paper-icon-button
@@ -82,6 +84,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: Boolean,
           notify: true,
           value: false
+        },
+        tabSelected: {
+          type: Number,
+          notify: true,
+          value: 3
         }
       },
 
