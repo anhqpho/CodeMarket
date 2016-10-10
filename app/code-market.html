@@ -3,9 +3,9 @@
   <link rel="import" href="bower_components/polymerfire/polymerfire.html">
   <link rel="import" href="bower_components/paper-input/paper-input.html">
   <link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
-  <link rel="import" href="bower_components/paper-tabs/paper-tabs-icons.html">
-  <link rel="import" href="bower_components/paper-tabs/paper-tab.html">
   <link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
+  <link rel="import" href="bower_components/iron-pages/iron-pages.html">
+  
 
   <dom-module id="code-market">
     <template>
@@ -54,28 +54,27 @@
         <paper-toggle-button
           checked="{{devMode}}">
           I am a developer
-        </paper-toggle-button>
+        </paper-toggle-button>                
 
         <div id = "skill-set" hidden$="[[!devMode]]">
-        <table border="2" hidden$="[[!devMode]]" class = "skill-set">
-          <tbody>
-            <tr>
-              <td><paper-checkbox>iOS App Dev</paper-checkbox></td>
-              <td><paper-checkbox>Swift</paper-checkbox></td>
-              <td><paper-checkbox>SQL</paper-checkbox></td>
-              <td><paper-checkbox>Web App</paper-checkbox></td>
-            </tr>
-            <tr>
-              <td><paper-checkbox>Java</paper-checkbox></td>
-              <td><paper-checkbox>JavaScript</paper-checkbox></td>
-              <td><paper-checkbox>Python</paper-checkbox></td>
-              <td><paper-checkbox>Android App Dev</paper-checkbox></td>
-            </tr>
-          </tbody>
-        </table>
+          <table border="2" hidden$="[[!devMode]]" class = "skill-set">
+            <tbody>
+              <tr>
+                <td><paper-checkbox>iOS App Dev</paper-checkbox></td>
+                <td><paper-checkbox>Swift</paper-checkbox></td>
+                <td><paper-checkbox>SQL</paper-checkbox></td>
+                <td><paper-checkbox>Web App</paper-checkbox></td>
+              </tr>
+              <tr>
+                <td><paper-checkbox>Java</paper-checkbox></td>
+                <td><paper-checkbox>JavaScript</paper-checkbox></td>
+                <td><paper-checkbox>Python</paper-checkbox></td>
+                <td><paper-checkbox>Android App Dev</paper-checkbox></td>
+              </tr>
+            </tbody>
+          </table>
       </div>
     </template>
-
     <script>
       Polymer({
         is: 'code-market',
@@ -85,6 +84,11 @@
         signIn: function() {
           this.$.auth.signInWithPopup();
         }
+       
+      });
+
+      document.addEventListener('WebComponentsReady', function() {
+          var app = document.getElementById('code-market');
       });
     </script>
   </dom-module>

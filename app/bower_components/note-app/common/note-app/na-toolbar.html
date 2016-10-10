@@ -12,6 +12,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="/bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="/bower_components/app-storage/app-network-status-behavior.html">
+<link rel="import" href="/bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="/bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="/bower_components/paper-tabs/paper-tabs-icons.html">
+<link rel="import" href="/bower_components/app-layout/app-toolbar/app-toolbar.html">
+
 <dom-module id="na-toolbar">
   <template>
     <style>
@@ -38,33 +43,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       @media (min-width: 640px) {
         iron-icon,
-        paper-icon-button {
-          margin-right: 1.5em;
+        paper-icon-button.first {
+          margin-right: 0.5em;
         }
-
+                
         iron-icon:first-child {
           margin-left: 1em;
         }
       }
     </style>
-    <app-header id="header" effects="waterfall" fixed condenses>
-        <app-toolbar>
-          <paper-icon-button icon="menu"></paper-icon-button>
-          <paper-tabs selected="0">
-            <paper-tab>CodeMarket</paper-tab>
-            <paper-tab>Marketplace</paper-tab>
-            <paper-tab>Projects</paper-tab>
-            <paper-tab>Certification</paper-tab>
-          </paper-tabs>
-          <paper-tab>Username</paper-tab>
-          <paper-icon-button icon="search"></paper-icon-button>
-        </app-toolbar>
-      </app-header>
 
+    <paper-tabs id="main-tabs" selected="{{selected}}" no-ba>
+      <paper-tab name="p1">CodeMarket</paper-tab>
+      <paper-tab name="p2">Inventory</paper-tab>
+      <paper-tab name ="p3">Certification</paper-tab>
+      <paper-tab name ="p4">Profile</paper-tab>
+    </paper-tabs>
+      
+    <span style="flex: 1;"></span>
+    <paper-icon-button icon="settings" class="first"></paper-icon-button>
     <paper-icon-button
         icon="[[computeLockIcon(signedIn)]]"
         disabled="[[!signedIn]]"
-        on-tap="lock">
+        on-tap="lock"
+        class="second">
     </paper-icon-button>
   </template>
   <script>
