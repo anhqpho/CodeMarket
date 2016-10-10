@@ -1,14 +1,14 @@
 [debug] ----------------------------------------------------------------------
-[debug] Command:      C:\Program Files\nodejs\node.exe C:\Users\fatca_000\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] Command:      /usr/local/bin/node /usr/local/bin/firebase serve
 [debug] CLI Version:  3.0.7
-[debug] Platform:     win32
-[debug] Node Version: v4.5.0
-[debug] Time:         Sun Oct 09 2016 13:53:08 GMT-0700 (Pacific Daylight Time)
+[debug] Platform:     darwin
+[debug] Node Version: v6.6.0
+[debug] Time:         Sun Oct 09 2016 18:41:06 GMT-0700 (PDT)
 [debug] ----------------------------------------------------------------------
 [debug] 
 [info] Starting Firebase development server...
 [info] 
-[info] Project Directory: D:\CodeMarket
+[info] Project Directory: /Users/aditya/Documents/Polymer Project/CodeMarket
 [info] Public Directory: app
 [info] 
 [info] Server listening at: http://localhost:5000
