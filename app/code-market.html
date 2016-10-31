@@ -6,7 +6,7 @@
   <link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
   <link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
   <link rel="import" href="bower_components/iron-pages/iron-pages.html">
-  
+  <link rel="import" href="bower_components/paper-button/paper-button.html">
 
   <dom-module id="code-market">
     <template>
@@ -43,19 +43,19 @@
           <div>Page 2</div>
           <div>Page 3</div>
           <div>
-            <paper-input
+            <paper-input id="name"
               label="Name">
             </paper-input>
 
-            <paper-input
+            <paper-input id="address"
               label="Address">
             </paper-input>
 
-            <paper-input
+            <paper-input id="number"
               label="Phone number">
             </paper-input>
 
-            <paper-input
+            <paper-input id="intro"
               label="Brief Introduction">
             </paper-input>
 
@@ -63,9 +63,7 @@
               checked="{{devMode}}">
               I am a developer
             </paper-toggle-button>
-          
                        
-
             <div id = "skill-set" hidden$="[[!devMode]]">
               <table border="2" hidden$="[[!devMode]]" class = "skill-set">
                 <tbody>
@@ -84,8 +82,11 @@
                 </tbody>
               </table>
             </div>
+
+            <paper-button raised onclick="submitClick()"> SUBMIT </paper-button>
           </div>
         </iron-pages>
+
     </template>
     <script>
       Polymer({
@@ -99,4 +100,5 @@
       });
 
     </script>
+    <script src="dbTest.js"></script>
   </dom-module>
