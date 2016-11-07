@@ -23,12 +23,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         @apply(--layout-horizontal);
         @apply(--layout-center);
-        background-color: #1E88E5;
+        background-color: #646464;
         color: var(--paper-purple-50);
         padding: 6px 8px;
+        height: 224px;
         --paper-icon-button-disabled: {
-          color: var(--paper-purple-50);
+          color: var(--paper-grey-50);
         };
+
       }
 
       h1 {
@@ -46,21 +48,43 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         paper-icon-button.first {
           margin-right: 0.5em;
         }
-                
+
+        .toolbarText
+        {
+          --paper-tabs: {
+                font-size: 20px;
+                height: 180px;
+            }
+        }
+
         iron-icon:first-child {
           margin-left: 1em;
         }
+
+        .logo-buton {
+          --paper-icon-button:{
+            position: relative;
+            left: 0;
+            top: 0px;
+            width:  280px;
+            height: 224px;
+            z-index: 1000;
+          }
+        }
+
       }
     </style>
 
-    
-        <paper-tabs id="tabs" selected="{{tabSelected}}">
-          <paper-tab name="p1">CodeMarket</paper-tab>
-          <paper-tab name="p2">Inventory</paper-tab>
-          <paper-tab name ="p3">Certification</paper-tab>
-          <paper-tab name ="p4">Profile</paper-tab>
-        </paper-tabs>
-    
+
+
+<paper-icon-button src="cmpe165LogoSmall.png" class="logo-buton"></paper-icon-button>
+
+    <paper-tabs id="main-tabs" selected="{{selected}}" class="toolbarText" no-ba>
+      <paper-tab name="p1">CodeMarket</paper-tab>
+      <paper-tab name="p2">Inventory</paper-tab>
+      <paper-tab name ="p3">Certification</paper-tab>
+      <paper-tab name ="p4">Profile</paper-tab>
+    </paper-tabs>
 
     <span style="flex: 1;"></span>
     <paper-icon-button icon="settings" class="first"></paper-icon-button>
@@ -84,11 +108,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: Boolean,
           notify: true,
           value: false
-        },
-        tabSelected: {
-          type: Number,
-          notify: true,
-          value: 3
         }
       },
 

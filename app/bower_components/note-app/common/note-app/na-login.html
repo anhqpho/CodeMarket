@@ -16,33 +16,102 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
       :host {
         position: absolute;
-        top: 46px;
+        top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: #1E88E5;
+        background-color: #323232;
         transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 1;
         color: var(--paper-purple-50);
 
+        /*
         @apply(--layout);
         @apply(--layout-center-center);
+        */
       }
 
       :host([signed-in]) {
         opacity: 0;
         pointer-events: none;
       }
+      .logo-img {
+        display:block;
+        margin-left: auto;
+        margin-right: auto;
+        margin: 0 auto;
+        --paper-icon-button:{
+          z-index: 1000;
+          }
+        }
 
       paper-button > * {
         vertical-align: middle;
         text-transform: none;
       }
+
+      #loginSpan {
+        border-radius: 1px;
+        border: #EFEFEF dashed;
+        background-color: #00B100;
+        box-shadow: 7px 7px 7px 0px rgba(0,0,0,0.7);
+        transition: all 1s;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin: 0 auto;
+        min-width: 200px;
+        width:20%;
+        text-align: center;
+        border-radius: 7px;
+      }
+
+      #loginSpan:hover {
+        border: #EFEFEF dashed;
+        /*background-color: #00B100;*/
+        box-shadow: 0px 0px 32px 0px rgba(255,255,255,255);
+        transition: all 0.5s;
+         width: 30%;
+      }
+
+      #AboutText
+      {
+        text-align: left;
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+        margin: 0 auto;
+      }
+
     </style>
-    <paper-button on-tap="signIn" disabled="[[disabled]]">
-      <iron-icon icon="account-circle"></iron-icon>
-      <span>Sign in with Google</span>
-    </paper-button>
+
+    <div style="display:block; height: 20%; outline: #161616 dashed; clear:both">
+    </div>
+
+    <span><img src="cmpe165LogoSmall.png" class="logo-img"></img></span>
+        <span id="loginSpan" >
+        <paper-button on-tap="signIn" disabled="[[disabled]]">
+          <iron-icon icon="account-circle"></iron-icon>
+          <span>Sign in with Google</span>
+        </paper-button>
+      </span><br>
+
+      <div style="z-index: 1000; background-color: #323232; outline: #161616 dashed;">
+        <h2 id="AboutText">Welcome to CodeMarket</h2>
+        <div id="AboutText" style="font-size: 30;">
+        <p>
+          CodeMarket is an online marketplace for independent software contractors and project owners.<br>
+          <ul style="text-align: left;">
+          <li>For project owners, we provide a comunity of professional developers capable of engineering intuitive solutions.<br></li>
+          <li>For developers, we provide connections to interesting and potentially lucrative projects.<br></li>
+          </ul>
+          Our competitive project bidding, and rating system improves the quality of both developers and project owners involved.<br>
+          Sign up today for free with your Google Account and get connected to worthwhile projects and people.
+        </p>
+        </div>
+      </div>
+      </div>
+
   </template>
   <script>
     Polymer({
