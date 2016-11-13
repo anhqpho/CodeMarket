@@ -70,13 +70,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             height: 224px;
             z-index: 1000;
           }
-        },
-        tabSelected: {
-            type: Number,
-            notify: true,
-            value: 3
-          }
-
+        }
       }
     </style>
 
@@ -113,7 +107,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: Boolean,
           notify: true,
           value: false
-        }
+        },
+        tabSelected: {
+            type: Number,
+            notify: true,
+            value: 3
+          }
       },
 
       computeLockIcon: function(signedIn) {
