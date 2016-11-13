@@ -70,7 +70,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             height: 224px;
             z-index: 1000;
           }
-        }
+        },
+        tabSelected: {
+            type: Number,
+            notify: true,
+            value: 3
+          }
 
       }
     </style>
@@ -79,7 +84,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <paper-icon-button src="cmpe165LogoSmall.png" class="logo-buton"></paper-icon-button>
 
-    <paper-tabs id="main-tabs" selected="{{selected}}" class="toolbarText" no-ba>
+    <paper-tabs id="main-tabs" selected="{{tabSelected}}" class="toolbarText" no-ba>
       <paper-tab name="p1">CodeMarket</paper-tab>
       <paper-tab name="p2">Inventory</paper-tab>
       <paper-tab name ="p3">Certification</paper-tab>
