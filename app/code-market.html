@@ -7,6 +7,7 @@
 <link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
 <link rel="import" href="bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="bower_components/paper-button/paper-button.html">
+<link rel="import" href="marketplace.html">
 
 <dom-module id="code-market">
   <template>
@@ -39,7 +40,9 @@
       </firebase-auth>
 
       <iron-pages id="content" selected="{{tabSelected}}">
-        <div>Page 1</div>
+        <div>
+          <bidding-platform user="{{user}}"> </bidding-platform> 
+        </div> 
         <div>Page 2</div>
         <div>Page 3</div>
         <div>
@@ -115,14 +118,14 @@
 
         // Using name here will probably create issues if people have the same name. Will worry about it later. Need to figure out how to get userID later on.
         //Also need someone to add developer and the skills
-        firebase.database().ref('users/' + name).set({
+        firebase.database().ref('users/' + this.user.uid).set({
           name: name,
           address: address,
           number: number,
           intro: intro,
           developer: developer
         });
-      }
+      },
     });
 
   </script>
