@@ -41,8 +41,8 @@
 
       <iron-pages id="content" selected="{{tabSelected}}">
         <div>
-          <bidding-platform user="{{user}}"> </bidding-platform> 
-        </div> 
+          <bidding-platform user="{{user}}"> </bidding-platform>
+        </div>
         <div>Page 2</div>
         <div>Page 3</div>
         <div>
@@ -87,10 +87,12 @@
           </div>
 
           <paper-button raised on-click="submit"> SUBMIT </paper-button>
+          <paper-button raised on-click="refresh"> REFRESH </paper-button>
         </div>
       </iron-pages>
 
   </template>
+        <body onload="refresh">
   <script>
     Polymer({
       is: 'code-market',
@@ -99,6 +101,54 @@
       signIn: function() {
         this.$.auth.signInWithPopup();
         this.$.content.select(3);
+      },
+
+      refresh: function() {
+        //test code for retrieving database
+        var getName;
+        var getAddress;
+        var getPhone;
+        var getIntro;
+
+        // Name
+        var ref = firebase.database().ref('users/' + this.user.uid + '/name');
+        ref.on("value", function(snapshot) {
+           console.log(snapshot.val());
+           getName = snapshot.val();
+        }, function (error) {
+           console.log("Error: " + error.code);
+        });
+        this.$.name.updateValueAndPreserveCaret(getName);
+
+        // Address
+        ref = firebase.database().ref('users/' + this.user.uid + '/address');
+        ref.on("value", function(snapshot) {
+           // console.log(snapshot.val());
+           getAddress = snapshot.val();
+        }, function (error) {
+           console.log("Error: " + error.code);
+        });
+        this.$.address.updateValueAndPreserveCaret(getAddress);
+
+        // Phone
+        ref = firebase.database().ref('users/' + this.user.uid + '/number');
+        ref.on("value", function(snapshot) {
+           // console.log(snapshot.val());
+           getPhone = snapshot.val();
+        }, function (error) {
+           console.log("Error: " + error.code);
+        });
+        this.$.number.updateValueAndPreserveCaret(getPhone);
+
+        // Intro
+        ref = firebase.database().ref('users/' + this.user.uid + '/intro');
+        ref.on("value", function(snapshot) {
+           // console.log(snapshot.val());
+           getIntro = snapshot.val();
+        }, function (error) {
+           console.log("Error: " + error.code);
+        });
+        this.$.intro.updateValueAndPreserveCaret(getIntro);
       },
 
       // Submit button for profile.
