@@ -17,19 +17,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: none;
         position: absolute;
         overflow: hidden;
-        top: 46px;
         left: 0;
         right: 0;
         bottom: 0;
         z-index: 1;
+        min-height: 320px;
       }
 
       :host([opened]) {
         display: block;
+        position: absolute;
+        bottom: 0;
+        background-color: #323232;
+        min-height: 320px;
       }
 
       :host(.open) {
-        background-color: var(--paper-purple-500);
+        /*background-color: var(--paper-purple-500);*/
+        position: absolute;
+        bottom: 0;
+        background-color: #323232;
+        min-height: 320px;
       }
 
       paper-button {
@@ -39,20 +47,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       #background {
         display: block;
         position: absolute;
-        top: 0;
+        bottom: 0;
         left: 0;
         border-radius: 512px;
         width: 256px;
-        height: 256px;
-        background-color: var(--paper-purple-500);
+        min-height: 320px;
+        background-color: #323232
         transform-origin: 128px 128px;
       }
 
       na-note {
         display: block;
-        position: absolute;
-        top: 0px;
-        left: 0px;
+        position: relative;
+        bottom: calc(100vh- 320px);
+        left: 0;
       }
 
       :host(.open) na-note {

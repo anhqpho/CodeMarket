@@ -5,7 +5,7 @@
 <dom-module id="bidding-platform">
   <template>
     <style include="note-app-shared-styles">
-      paper-fap {
+      paper-fab {
         position:relative
         margin-right: 10%;
         margin-bot: 50%
@@ -38,7 +38,7 @@
       path="/notes/[[user.uid]]"
       data="{{notes}}">
     </firebase-query>
-    
+
     <app-indexeddb-mirror
       session="[[user.uid]]"
       key="notes"
@@ -80,8 +80,7 @@
       get isEditable() {
         return this.online;
       }
-     
+
     });
   </script>
 </dom-module>
- 
