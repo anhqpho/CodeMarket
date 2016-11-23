@@ -67,6 +67,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         position: relative;
         margin: auto;
         width: calc(100vw - 20px);
+		height: 480px;
+		min-height: 240px;
         max-width: 480px;
       }
 
@@ -89,6 +91,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
     <div id="background"></div>
     <na-note id="note" title="{{note.title}}" body="{{note.body}}" editable></na-note>
+	    <div id = "skill-set-required">
+            <table border="2" class = "skill-set-required">
+              <tbody>
+                <tr>
+                  <td><paper-checkbox>iOS App Dev</paper-checkbox></td>
+                  <td><paper-checkbox>Swift</paper-checkbox></td>
+                  <td><paper-checkbox>SQL</paper-checkbox></td>
+                  <td><paper-checkbox>Web App</paper-checkbox></td>
+                </tr>
+                <tr>
+                  <td><paper-checkbox>Java</paper-checkbox></td>
+                  <td><paper-checkbox>JavaScript</paper-checkbox></td>
+                  <td><paper-checkbox>Python</paper-checkbox></td>
+                  <td><paper-checkbox>Android App Dev</paper-checkbox></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
     <div class="controls">
       <paper-button on-tap="delete">Delete</paper-button>
       <paper-button on-tap="save">Done</paper-button>
