@@ -72,6 +72,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         max-width: 480px;
       }
 
+	  .requirements {
+        display: block;
+        position: relative;
+        margin: 10px auto;
+        width: calc(100vw - 20px);
+        max-width: 480px;
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+		background: #F9F9F9;
+        justify-content: space-between;
+        transition: opacity 0.3s;
+        opacity: 1;
+	  }
+	  
+	  :host(.open) .requirements {
+	  opacity: 1;
+	  }
+	  
       .controls {
         display: block;
         position: relative;
@@ -91,8 +109,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
     <div id="background"></div>
     <na-note id="note" title="{{note.title}}" body="{{note.body}}" editable></na-note>
-	    <div id = "skill-set-required">
-            <table border="2" class = "skill-set-required">
+	    <div class = "requirements">
+            <table border="2">
               <tbody>
                 <tr>
                   <td><paper-checkbox>iOS App Dev</paper-checkbox></td>
@@ -108,7 +126,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </tr>
               </tbody>
             </table>
-          </div>
+        </div>
     <div class="controls">
       <paper-button on-tap="delete">Delete</paper-button>
       <paper-button on-tap="save">Done</paper-button>
