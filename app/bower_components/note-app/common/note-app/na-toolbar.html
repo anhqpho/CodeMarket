@@ -39,6 +39,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin: 9px 0;
       }
 
+      h3 {
+        font-size: 30px;
+        flex-grow: 1;
+        margin: 9px 0;
+      }
+
       iron-icon {
         margin-right: 0.5em;
       }
@@ -83,7 +89,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-tab name="p2">Inventory</paper-tab>
       <paper-tab name ="p3">Certification</paper-tab>
       <paper-tab name ="p4">Profile</paper-tab>
+      <paper-tab id = "tb_profileName" name = "p5" >Welcome</paper-tab>
     </paper-tabs>
+
+
 
     <span style="flex: 1;"></span>
     <paper-icon-button icon="settings" class="first"></paper-icon-button>
@@ -94,6 +103,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         class="second">
     </paper-icon-button>
   </template>
+  <script src="GlobalVariables.js"></script>
   <script>
     Polymer({
       is: 'na-toolbar',
@@ -112,7 +122,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             type: Number,
             notify: true,
             value: 3
-          }
+          },
+      },
+
+      updateToolbarContent: function()
+      {
+        console.log("Update Toolbar Content");
+        this.$.tb_profileName = myUser.displayName;
       },
 
       computeLockIcon: function(signedIn) {
@@ -122,6 +138,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       lock: function() {
         this.fire('sign-out');
       }
+
     });
+
   </script>
 </dom-module>

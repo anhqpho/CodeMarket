@@ -35,6 +35,13 @@
         white-space: pre-wrap;
       }
 
+      h2 {
+        font-size: 0.7em;
+        margin: 0;
+        white-space: pre-wrap;
+        color: rgba(128,128,128,255);
+      }
+
       .placeholder:after {
         content: 'Tap to edit';
         opacity: 0.5;
@@ -55,6 +62,7 @@
         id="title"
         class$="[[emptyClass(title, editable)]]"
         contenteditable$="[[editable]]"></h1>
+    <h2 id="author" class$="[[emptyClass(author)]]"></h2>
     <p
         id="body"
         class$="[[emptyClass(body, editable)]]"
@@ -84,6 +92,12 @@
           value: ''
         },
 
+        name: {
+          type: String,
+          notify: false,
+          value: ''
+        },
+
         lastUpdated: {
           type: Number,
           value: 0
@@ -95,7 +109,7 @@
       },
 
       observers: [
-        'updateTextContent(title, body)'
+        'updateTextContent(title, body, author)'
       ],
 
       emptyClass(content, editable) {
@@ -115,10 +129,11 @@
         return true;
       },
 
-      updateTextContent(title, body) {
+      updateTextContent(title, body , author ) {
         console.log(arguments);
         this.$.title.textContent = title;
         this.$.body.textContent = body;
+        this.$.author.textContent = "by "+author;
       },
 
       onInput() {

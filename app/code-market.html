@@ -45,7 +45,7 @@
           <bidding-platform user="{{user}}"> </bidding-platform>
         </div>
         <div>
-			Page 2
+			Page 5000
         </div>
         <div>
 			Page 3
@@ -98,14 +98,31 @@
 
   </template>
         <body onload="refresh">
+          <script src="\bower_components\note-app\common\note-app\GlobalVariables.js"> </script>
   <script>
     Polymer({
       is: 'code-market',
       behaviors: [Polymer.NoteAppBehavior],
 
       signIn: function() {
-        this.$.auth.signInWithPopup();
-        this.$.content.select(3);
+        this.$.auth.signInWithPopup().then(function(result) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        // These are our global variables that we can include from the other elements
+        myUser = result.user;
+        myUserName = result.user.displayName;
+
+        // Event listener
+        document.addEventListener('polymer-ready', function() {
+          document.querySelector('na-toolbar').updateToolbarContent();
+        });
+
+      })
+
+      this.$.content.select(3);
+
       },
 
       refresh: function() {
@@ -124,6 +141,9 @@
            console.log("Error: " + error.code);
         });
         this.$.name.updateValueAndPreserveCaret(getName);
+
+        myUser = this.user;
+        myUserName = this.$.displayName;
 
         // Address
         ref = firebase.database().ref('users/' + this.user.uid + '/address');

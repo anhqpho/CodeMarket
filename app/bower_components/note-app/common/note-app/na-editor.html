@@ -53,7 +53,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: 256px;
         min-height: 320px;
         background-color: #323232
-        transform-origin: 128px 128px;
+        transform-origin: 100vw 100vh;
       }
 
       na-note {
@@ -67,29 +67,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         position: relative;
         margin: auto;
         width: calc(100vw - 20px);
-		height: 480px;
-		min-height: 240px;
+		    min-height: 240px;
         max-width: 480px;
       }
 
 	  .requirements {
         display: block;
         position: relative;
-        margin: 10px auto;
+        background-color: rgba(225,225,225,255);
+        margin: auto;
+        border: 2px;
+        border-radius: 4px;
         width: calc(100vw - 20px);
         max-width: 480px;
         @apply(--layout-horizontal);
         @apply(--layout-center);
-		background: #F9F9F9;
         justify-content: space-between;
         transition: opacity 0.3s;
-        opacity: 1;
+        opacity: 0;
 	  }
-	  
+
 	  :host(.open) .requirements {
 	  opacity: 1;
 	  }
-	  
+
       .controls {
         display: block;
         position: relative;
@@ -108,9 +109,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
     <div id="background"></div>
-    <na-note id="note" title="{{note.title}}" body="{{note.body}}" editable></na-note>
+    <na-note id="note" title="{{note.title}}" body="{{note.body}}" editable author="{{note.author}}"></na-note>
 	    <div class = "requirements">
-            <table border="2">
+            <table>
               <tbody>
                 <tr>
                   <td><paper-checkbox>iOS App Dev</paper-checkbox></td>
@@ -132,6 +133,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-button on-tap="save">Done</paper-button>
     </div>
   </template>
+  <script src="GlobalVariables.js"></script>
   <script>
     Polymer({
       is: 'na-editor',
@@ -154,7 +156,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this._setOpened(true);
         this.__editedNoteElement = noteElement;
         if (noteElement) {
-          noteElement.style.opacity = 0;
+          noteElement.style.opacity = 1;
           this.transitionInFrom(noteElement.getBoundingClientRect());
         } else {
           this.create();
@@ -162,8 +164,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       create() {
+
+        var user = myUser;
+        var username;
+        if (user){username=user.displayName;}
+        else{username="Anonymous";}
+
         this._setOpened(true);
-        this.note = { title: '', body: '' };
+        this.note = { title: '', body: '' , author: ''};
+        this.note.author = username;
         this.transitionInFrom(this.getBoundingClientRect());
       },
 
