@@ -111,55 +111,65 @@
       behaviors: [Polymer.NoteAppBehavior],
 
 
-      refresh: function() {
+      refresh: function(thisContext) {
+
+        // Obtain context dynamically
+        if (!thisContext){thisContext=this;}
+        thisContext.user = myUser;
+
         //test code for retrieving database
         var getName;
         var getAddress;
         var getPhone;
         var getIntro;
 
+        console.log("Try Profile Refresh");
+
+        var thisDom;
+
         // Name
-        var ref = firebase.database().ref('users/' + this.user.uid + '/name');
+        var ref = firebase.database().ref('users/' + thisContext.user.uid + '/name');
         ref.on("value", function(snapshot) {
            console.log(snapshot.val());
            getName = snapshot.val();
         }, function (error) {
            console.log("Error: " + error.code);
         });
-        this.$.name.updateValueAndPreserveCaret(getName);
-
-        myUser = this.user;
-        myUserName = this.$.displayName;
+        thisDom = Polymer.dom(this.root).querySelector('#name');
+        thisDom.updateValueAndPreserveCaret(getName);
 
         // Address
-        ref = firebase.database().ref('users/' + this.user.uid + '/address');
+        ref = firebase.database().ref('users/' + thisContext.user.uid + '/address');
         ref.on("value", function(snapshot) {
            // console.log(snapshot.val());
            getAddress = snapshot.val();
         }, function (error) {
            console.log("Error: " + error.code);
         });
-        this.$.address.updateValueAndPreserveCaret(getAddress);
+        thisDom = Polymer.dom(this.root).querySelector('#address');
+        thisDom.updateValueAndPreserveCaret(getAddress);
 
         // Phone
-        ref = firebase.database().ref('users/' + this.user.uid + '/number');
+        ref = firebase.database().ref('users/' + thisContext.user.uid + '/number');
         ref.on("value", function(snapshot) {
            // console.log(snapshot.val());
            getPhone = snapshot.val();
         }, function (error) {
            console.log("Error: " + error.code);
         });
-        this.$.number.updateValueAndPreserveCaret(getPhone);
+        thisDom = Polymer.dom(this.root).querySelector('#number');
+        thisDom.updateValueAndPreserveCaret(getPhone);
 
         // Intro
-        ref = firebase.database().ref('users/' + this.user.uid + '/intro');
+        ref = firebase.database().ref('users/' + thisContext.user.uid + '/intro');
         ref.on("value", function(snapshot) {
            // console.log(snapshot.val());
            getIntro = snapshot.val();
         }, function (error) {
            console.log("Error: " + error.code);
         });
-        this.$.intro.updateValueAndPreserveCaret(getIntro);
+        thisDom = Polymer.dom(this.root).querySelector('#intro');
+        thisDom.updateValueAndPreserveCaret(getIntro);
       },
 
       signIn: function() {
@@ -177,8 +187,12 @@
         myUser = result.user;
         myUserName = result.user.displayName;
 
+
+
+
         // Update the toolbar
         console.log("The login is ready");
+
         var tmp = theToolbar;
         if (tmp) {
           // Indicate success
@@ -189,6 +203,7 @@
         else {console.log("The toolbar can't be found");}
 
         // Update profile content
+        thisContext.refresh(thisContext);
       })
 
       this.$.content.select(3);
