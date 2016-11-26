@@ -12,6 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="/bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="/bower_components/app-storage/app-network-status-behavior.html">
+<link rel="import" href="/bower_components/paper-tooltip/paper-tooltip.html">
 <link rel="import" href="/bower_components/paper-tabs/paper-tab.html">
 <link rel="import" href="/bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="/bower_components/paper-tabs/paper-tabs-icons.html">
@@ -40,9 +41,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       h3 {
-        font-size: 30px;
+        font-size: 1.0em;
         flex-grow: 1;
-        margin: 9px 0;
+        text-align: right;
       }
 
       iron-icon {
@@ -82,31 +83,52 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
 
-<paper-icon-button src="cmpe165LogoSmall.png" class="logo-buton"></paper-icon-button>
+<paper-icon-button src="cmpe165LogoSmall.png" class="logo-buton" id="ibtn_logo"></paper-icon-button>
 
     <paper-tabs id="main-tabs" selected="{{tabSelected}}" class="toolbarText" no-ba>
-      <paper-tab name="p1">CodeMarket</paper-tab>
-      <paper-tab name="p2">Inventory</paper-tab>
-      <paper-tab name ="p3">Certification</paper-tab>
-      <paper-tab name ="p4">Profile</paper-tab>
-      <paper-tab id = "tb_profileName" name = "p5" >Welcome</paper-tab>
+      <paper-tab name="p1" id="pgtb_market" >
+        CodeMarket</paper-tab>
+      <paper-tab name="p2" id="pgtb_inventory">
+        Inventory</paper-tab>
+      <paper-tab name ="p3" id="pgtb_certification">
+        Certification</paper-tab>
+      <paper-tab name ="p4" id="pgtb_profile">
+        Profile</paper-tab>
     </paper-tabs>
+
+    <h3 id="tb_profileName">Welcome Anonymous</h3>
+
+    <paper-tooltip for="pgtb_market" offset="0" >Visit the market to see what projects still need your help</paper-tooltip>
+    <paper-tooltip for="pgtb_inventory" offset="0">Go to your inventory where all your projects and bids are kept</paper-tooltip>
+    <paper-tooltip for="pgtb_certification" offset="0">Check your certifications and get new ones</paper-tooltip>
+    <paper-tooltip for="pgtb_profile" offset="0">View and edit your profile information</paper-tooltip>
 
 
 
     <span style="flex: 1;"></span>
-    <paper-icon-button icon="settings" class="first"></paper-icon-button>
+    <paper-icon-button icon="settings" class="first" id="ibtn_settings" on-tap="updateToolbarContent"></paper-icon-button>
     <paper-icon-button
+        id="ibtn_signIn"
         icon="[[computeLockIcon(signedIn)]]"
         disabled="[[!signedIn]]"
         on-tap="lock"
         class="second">
     </paper-icon-button>
+
+    <paper-tooltip for="ibtn_settings" offset="0">View Settings</paper-tooltip>
+    <paper-tooltip for="ibtn_signIn" offset="0">Log out of Code Market</paper-tooltip>
+
+
   </template>
   <script src="GlobalVariables.js"></script>
   <script>
     Polymer({
       is: 'na-toolbar',
+
+      ready: function()
+      {
+          console.log("The toolbar is ready");
+      },
 
       behaviors: [
         Polymer.AppNetworkStatusBehavior
@@ -128,7 +150,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       updateToolbarContent: function()
       {
         console.log("Update Toolbar Content");
-        this.$.tb_profileName = myUser.displayName;
+        if (myUser)
+        {
+          this.$.tb_profileName.textContent = "Welcome, "+myUser.displayName;
+        } else{ this.$.tb_profileName.textContent = "Hello, please sign in"; }
       },
 
       computeLockIcon: function(signedIn) {
@@ -137,9 +162,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       lock: function() {
         this.fire('sign-out');
-      }
+      },
 
     });
 
   </script>
+
 </dom-module>

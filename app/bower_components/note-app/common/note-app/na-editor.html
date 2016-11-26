@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="/bower_components/paper-styles/color.html">
 <link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="/bower_components/paper-button/paper-button.html">
+<link rel="import" href="/bower_components/paper-tooltip/paper-tooltip.html">
 <dom-module id="na-editor">
   <template>
     <style>
@@ -109,12 +110,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
     <div id="background"></div>
-    <na-note id="note" title="{{note.title}}" body="{{note.body}}" editable author="{{note.author}}"></na-note>
+    <na-note id="note" title="{{note.title}}" createDate="{{note.createDate}}" body="{{note.body}}" author="{{note.author}}" editable></na-note>
 	    <div class = "requirements">
-            <table>
+            <table >
               <tbody>
                 <tr>
-                  <td><paper-checkbox>iOS App Dev</paper-checkbox></td>
+                  <td><paper-checkbox id="grid_requirements">iOS App Dev</paper-checkbox></td>
                   <td><paper-checkbox>Swift</paper-checkbox></td>
                   <td><paper-checkbox>SQL</paper-checkbox></td>
                   <td><paper-checkbox>Web App</paper-checkbox></td>
@@ -128,9 +129,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </tbody>
             </table>
         </div>
+        <paper-tooltip for="grid_requirements" offset="0" position="top">Check off the required skills for this project</paper-tooltip>
+
     <div class="controls">
-      <paper-button on-tap="delete">Delete</paper-button>
-      <paper-button on-tap="save">Done</paper-button>
+      <paper-button on-tap="delete" id="btn_del" >Delete</paper-button>
+      <paper-button on-tap="save" id="btn_done">Done</paper-button>
+      <paper-tooltip for="btn_del" offset="0" position="top">Erase this project</paper-tooltip>
+      <paper-tooltip for="btn_done" offset="0" position="top">Post this project</paper-tooltip>
+
+
     </div>
   </template>
   <script src="GlobalVariables.js"></script>
@@ -167,12 +174,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         var user = myUser;
         var username;
+        var cdate = "Today";
         if (user){username=user.displayName;}
         else{username="Anonymous";}
 
         this._setOpened(true);
-        this.note = { title: '', body: '' , author: ''};
+        this.note = { title: '', createDate: '', body: '' , author: '' };
         this.note.author = username;
+        this.note.createDate = "Today";
         this.transitionInFrom(this.getBoundingClientRect());
       },
 

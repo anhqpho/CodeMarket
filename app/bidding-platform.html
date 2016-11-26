@@ -1,4 +1,5 @@
 <link rel="import" href="bower_components/note-app/common/note-app/na-elements.html">
+<link rel="import" href="/bower_components/paper-tooltip/paper-tooltip.html">
 <link rel="import" href="bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 <link rel="import" href="bower_components/polymerfire/polymerfire.html">
 
@@ -18,6 +19,8 @@
       disabled="[[!online]]"
       aria-label="Add Project">
     </paper-fab>
+
+    <paper-tooltip for="addProject">Add a new Project</paper-tooltip>
 
     <na-editor
       id="editor"
@@ -51,6 +54,7 @@
         <na-note
             id$="[[note.$key]]"
             title="[[note.title]]"
+            createDate="[[note.createDate]]"
             body="[[note.body]]"
             author="[[note.author]]"
             on-tap="edit">

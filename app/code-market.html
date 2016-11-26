@@ -20,7 +20,7 @@
 
       <!-- Leaving here for now until sign out button is implemented. Sign-in breaks when I remove the NA stuff. -->
       <na-toolbar
-        id="toolbar"
+        id="main_toolbar"
         signed-in="[[signedIn]]"
         on-sign-out="signOut"
         tab-selected ="{{tabSelected}}">
@@ -102,28 +102,14 @@
   <script>
     Polymer({
       is: 'code-market',
+
+      ready: function()
+      {
+        console.log("Code Market Is Ready!");
+      },
+
       behaviors: [Polymer.NoteAppBehavior],
 
-      signIn: function() {
-        this.$.auth.signInWithPopup().then(function(result) {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        var token = result.credential.accessToken;
-        // The signed-in user info.
-        var user = result.user;
-        // These are our global variables that we can include from the other elements
-        myUser = result.user;
-        myUserName = result.user.displayName;
-
-        // Event listener
-        document.addEventListener('polymer-ready', function() {
-          document.querySelector('na-toolbar').updateToolbarContent();
-        });
-
-      })
-
-      this.$.content.select(3);
-
-      },
 
       refresh: function() {
         //test code for retrieving database
@@ -174,6 +160,39 @@
            console.log("Error: " + error.code);
         });
         this.$.intro.updateValueAndPreserveCaret(getIntro);
+      },
+
+      signIn: function() {
+
+        // Get the toolbar element before entering the function where there is no polymer access to static dom
+        var theToolbar = this.$.main_toolbar;
+        var thisContext = this;
+
+        this.$.auth.signInWithPopup().then(function(result) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        // These are our global variables that we can include from the other elements
+        myUser = result.user;
+        myUserName = result.user.displayName;
+
+        // Update the toolbar
+        console.log("The login is ready");
+        var tmp = theToolbar;
+        if (tmp) {
+          // Indicate success
+          console.log("Toolbar update successful");
+          // Update the toolbar content
+          tmp.updateToolbarContent();
+        }
+        else {console.log("The toolbar can't be found");}
+
+        // Update profile content
+      })
+
+      this.$.content.select(3);
+
       },
 
       // Submit button for profile.
