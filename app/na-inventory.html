@@ -3,10 +3,26 @@
 <link rel="import" href="bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 <link rel="import" href="bower_components/polymerfire/polymerfire.html">
 
-<dom-module id="bidding-platform">
+<dom-module id="na-inventory">
   <template>
     <style include="note-app-shared-styles">
     </style>
+
+    <paper-fab id="addProject"
+      icon="add"
+      on-tap="create"
+      disabled="[[!online]]"
+      aria-label="Add Project"
+      style="z-index: 1000;">
+    </paper-fab>
+
+    <paper-tooltip for="addProject" margin-top="-120">Add a new Project</paper-tooltip>
+
+    <na-editor
+      id="editor"
+      note="{{editableNote}}"
+      on-close="commitChange">
+    </na-editor>
 
     <firebase-document
       id="document"
@@ -31,22 +47,23 @@
 
     <div class="notes">
       <template is="dom-repeat" items="[[persistedNotes]]" as="note">
-        <na-projpost
+        <na-note
             id$="[[note.$key]]"
             title="[[note.title]]"
             createDate="[[note.createDate]]"
             body="[[note.body]]"
             author="[[note.author]]"
             on-tap="edit">
-        </na-projpost>
+        </na-note>
       </template>
     </div>
+
 
   </template>
 
   <script>
     Polymer({
-      is: 'bidding-platform',
+      is: 'na-inventory',
       behaviors: [Polymer.NoteAppBehavior],
 
       properties: {

@@ -1,12 +1,14 @@
 <link rel="import" href="/bower_components/paper-styles/shadow.html">
 <link rel="import" href="/bower_components/paper-styles/typography.html">
-<dom-module id="na-note">
+<dom-module id="na-projpost">
   <template>
     <style>
       :host {
         display: block;
         box-sizing: border-box;
         background-color: #fafafa;
+        border-color: rgb(255,255,255);
+        border-width: thin;
         color: #212121;
         padding: 1em;
         @apply(--paper-font-common-base);
@@ -50,6 +52,13 @@
         color: rgba(128,128,128,255);
       }
 
+      paper-button.bidButton {
+          background: green;
+      }
+      paper-button.msgButton {
+          background: blue;
+      }
+
       .placeholder:after {
         content: 'Tap to edit';
         opacity: 0.5;
@@ -66,6 +75,8 @@
         pointer-events: none;
       }
     </style>
+
+    <div style="display: block; width: 50vw; float: left;">
     <h1
         id="title"
         class$="[[emptyClass(title, editable)]]"
@@ -77,10 +88,16 @@
         id="body"
         class$="[[emptyClass(body, editable)]]"
         contenteditable$="[[editable]]"></p>
+      </div>
+      <div style="display: block; width: 10vw; float: left;">
+      <paper-button bidButton raised on-click="" style="margin: 0.1em 0.1em 0.1em; background: rgb(0,200,255); color: #FFFFFF">Place Bid</paper-button><br>
+      <paper-button msgButton raised on-click="" style="margin: 0.1em 0.1em 0.1em; background: rgb(255,100,0); color: #FFFFFF">Direct Message</paper-button>
+    </div>
+
   </template>
   <script>
     Polymer({
-      is: 'na-note',
+      is: 'na-projpost',
 
       properties: {
         editable: {

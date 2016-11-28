@@ -9,6 +9,7 @@
 <link rel="import" href="bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="bower_components/paper-button/paper-button.html">
 <link rel="import" href="bidding-platform.html">
+<link rel="import" href="na-inventory.html">
 
 <dom-module id="code-market">
   <template>
@@ -23,7 +24,8 @@
         id="main_toolbar"
         signed-in="[[signedIn]]"
         on-sign-out="signOut"
-        tab-selected ="{{tabSelected}}">
+        tab-selected ="{{tabSelected}}"
+        user="{{user}}">
       </na-toolbar>
 
       <na-login
@@ -45,11 +47,11 @@
           <bidding-platform user="{{user}}"> </bidding-platform>
         </div>
         <div>
-			Page 5000
+          <na-inventory user="{{user}}"> </na-inventory>
         </div>
         <div>
-			Page 3
-		</div>
+			  Page 3
+		    </div>
         <div>
           <paper-input id="name"
             label="Name">
