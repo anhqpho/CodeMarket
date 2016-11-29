@@ -52,11 +52,15 @@
         color: rgba(128,128,128,255);
       }
 
-      paper-button.bidButton {
-          background: green;
+      #bidButton {
+          margin: 0.1em 0.1em 0.1em; 
+          background: rgb(0,200,255); 
+          color: #FFFFFF;
       }
-      paper-button.msgButton {
-          background: blue;
+      #msgButton {
+          margin: 0.1em 0.1em 0.1em; 
+          background: rgb(255,100,0); 
+          color: #FFFFFF
       }
 
       .placeholder:after {
@@ -90,8 +94,12 @@
         contenteditable$="[[editable]]"></p>
       </div>
       <div style="display: block; width: 10vw; float: left;">
-      <paper-button bidButton raised on-click="" style="margin: 0.1em 0.1em 0.1em; background: rgb(0,200,255); color: #FFFFFF">Place Bid</paper-button><br>
-      <paper-button msgButton raised on-click="" style="margin: 0.1em 0.1em 0.1em; background: rgb(255,100,0); color: #FFFFFF">Direct Message</paper-button>
+      <paper-button id="bidButton" raised on-click="">
+        Place Bid
+      </paper-button><br>
+      <paper-button id="msgButton" raised on-click="">
+        Direct Message
+      </paper-button>
     </div>
 
   </template>
