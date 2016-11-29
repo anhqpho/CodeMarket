@@ -1,0 +1,48 @@
+<link rel="import" href="bower_components/paper-input/paper-input.html">
+<link rel="import" href="bower_components/paper-button/paper-button.html">
+
+
+<dom-module id="na-chat">
+  <template>
+    <style>
+      #sendMessage {
+          background: rgb(255,100,0); 
+          color: #FFFFFF
+      }
+
+      #message-form {
+          display: flex;
+          flex-direction: row;
+          width: calc(100% - 48px);
+          float: left;
+      }
+      #message-input {
+          width: calc(100% - 100px);
+      }
+      #send-message {
+          width: 100px;
+          margin: 15px 0 0 10px;
+          background: rgb(0,200,255); 
+          color: #FFFFFF;
+      }
+    </style>
+    <div id="messages">
+
+    </div>
+
+    <div id="message-form">
+      <paper-input label="Message" id="message-input"></paper-input>
+      <paper-button id="send-message"> Send </paper-button>
+    </div>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'na-chat',
+      properties: {
+        user: Object
+      }
+    });
+  </script>
+</dom-module>
