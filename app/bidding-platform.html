@@ -30,14 +30,15 @@
     </app-indexeddb-mirror>
 
     <div class="notes">
-      <template is="dom-repeat" items="[[persistedNotes]]" as="note">
+      <template is="dom-repeat" items="{{persistedNotes}}" as="note">
         <na-projpost
             id$="[[note.$key]]"
             title="[[note.title]]"
             createDate="[[note.createDate]]"
             body="[[note.body]]"
-            author="[[note.author]]"
-            on-tap="edit">
+            author="{{note.author}}"
+            targetBid="{{note.targetBid}}"
+            on-tap="">
         </na-projpost>
       </template>
     </div>

@@ -6,14 +6,20 @@
 <dom-module id="na-inventory">
   <template>
     <style include="note-app-shared-styles">
+    paper-fab.btnAdd
+    {
+      position: fixed;
+      z-index: 1000;
+    }
     </style>
 
     <paper-fab id="addProject"
+      class="btnAdd"
       icon="add"
       on-tap="create"
       disabled="[[!online]]"
       aria-label="Add Project"
-      style="z-index: 1000;">
+      style="z-index: 1000; position:fixed;">
     </paper-fab>
 
     <paper-tooltip for="addProject" margin-top="-120">Add a new Project</paper-tooltip>
@@ -53,6 +59,7 @@
             createDate="[[note.createDate]]"
             body="[[note.body]]"
             author="[[note.author]]"
+            targetBid="[[note.targetBid]]"
             on-tap="edit">
         </na-note>
       </template>

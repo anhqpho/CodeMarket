@@ -52,6 +52,13 @@
         color: rgba(128,128,128,255);
       }
 
+      h4 {
+        font-size: 1.5em;
+        margin: 0;
+        white-space: pre-wrap;
+        color: rgba(128,128,128,255);
+      }
+
       paper-button.bidButton {
           background: green;
       }
@@ -76,22 +83,23 @@
       }
     </style>
 
-    <div style="display: block; width: 50vw; float: left;">
+    <div style="display: block; width: 48vw; float: left;">
     <h1
         id="title"
         class$="[[emptyClass(title, editable)]]"
         contenteditable$="[[editable]]"></h1>
 
     <h3 id="createDate" ></h3>
-    <h2 id="author" class$="[[emptyClass(author)]]"></h2>
+    <h2 id="author" class$="[[emptyClass(author, editable)]]"></h2>
     <p
         id="body"
         class$="[[emptyClass(body, editable)]]"
         contenteditable$="[[editable]]"></p>
       </div>
-      <div style="display: block; width: 10vw; float: left;">
-      <paper-button bidButton raised on-click="" style="margin: 0.1em 0.1em 0.1em; background: rgb(0,200,255); color: #FFFFFF">Place Bid</paper-button><br>
-      <paper-button msgButton raised on-click="" style="margin: 0.1em 0.1em 0.1em; background: rgb(255,100,0); color: #FFFFFF">Direct Message</paper-button>
+    <div style="display: block; width: 18vw; float: left; border-left: dashed thin; boder-color: rgb(128,128,128);">
+      <paper-button bidButton raised on-click="" style="margin: 0.1em 1.1em 0.1em; background: rgb(0,200,255); color: #FFFFFF">Place Bid</paper-button><br>
+      <paper-button msgButton raised on-click="" style="margin: 0.1em 1.1em 0.1em; background: rgb(255,100,0); color: #FFFFFF">Send Message</paper-button>
+      <h4>$</h4><h4 id="targetBid" style="margin-right: 0.1em; float: left;" class$="[[emptyClass( targetBid )]]"> </h4>
     </div>
 
   </template>
@@ -130,6 +138,12 @@
           value: ''
         },
 
+        targetBid: {
+          type: String,
+          notify: true,
+          value: ''
+        },
+
         lastUpdated: {
           type: Number,
           value: 0
@@ -141,7 +155,7 @@
       },
 
       observers: [
-        'updateTextContent(title, createDate, body, author )'
+        'updateTextContent(title, createDate, body, author , targetBid )'
       ],
 
       emptyClass(content, editable) {
@@ -161,11 +175,12 @@
         return true;
       },
 
-      updateTextContent(title, createDate, body , author ) {
+      updateTextContent(title, createDate, body , author , targetBid ) {
         console.log(arguments);
         this.$.title.textContent = title;
         this.$.body.textContent = body;
-        this.$.author.textContent = "created "+createDate+"by "+author;
+        this.$.author.textContent = "created "+createDate+" by "+author;
+        this.$.targetBid.textContent = targetBid;
       },
 
       onInput() {

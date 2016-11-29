@@ -50,6 +50,13 @@
         color: rgba(128,128,128,255);
       }
 
+      h4 {
+        font-size: 1.5em;
+        margin: 0;
+        white-space: pre-wrap;
+        color: rgba(128,128,128,255);
+      }
+
       .placeholder:after {
         content: 'Tap to edit';
         opacity: 0.5;
@@ -72,11 +79,13 @@
         contenteditable$="[[editable]]"></h1>
 
     <h3 id="createDate" ></h3>
-    <h2 id="author" class$="[[emptyClass(author)]]"></h2>
+    <h2 id="author" class$="[[emptyClass(author , editable )]]"></h2>
     <p
         id="body"
         class$="[[emptyClass(body, editable)]]"
         contenteditable$="[[editable]]"></p>
+    <h4>$</h4><h4 id="targetBid" class$="[[emptyClass(targetBid, editable)]]"
+    contenteditable$="[[editable]]"> </h4>
   </template>
   <script>
     Polymer({
@@ -113,6 +122,12 @@
           value: ''
         },
 
+        targetBid: {
+          type: String,
+          notify: true,
+          value: ''
+        },
+
         lastUpdated: {
           type: Number,
           value: 0
@@ -124,7 +139,7 @@
       },
 
       observers: [
-        'updateTextContent(title, createDate, body, author )'
+        'updateTextContent(title, createDate, body, author , targetBid )'
       ],
 
       emptyClass(content, editable) {
@@ -144,17 +159,19 @@
         return true;
       },
 
-      updateTextContent(title, createDate, body , author ) {
+      updateTextContent(title, createDate, body , author , targetBid ) {
         console.log(arguments);
         this.$.title.textContent = title;
         this.$.body.textContent = body;
         this.$.author.textContent = "created "+createDate+"by "+author;
+        this.$.targetBid.textContent = targetBid;
       },
 
       onInput() {
         this.async(function() {
           this.title = this.$.title.innerText;
           this.body = this.$.body.innerText;
+          this.targetBid.value = "100";// this.$.targetBid.innerText;
         });
       }
     })

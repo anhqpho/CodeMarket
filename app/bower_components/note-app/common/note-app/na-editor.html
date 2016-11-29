@@ -27,7 +27,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       :host([opened]) {
         display: block;
-        position: absolute;
+        position: fixed;
         bottom: 0;
         background-color: rgba(64,64,64,0);
         min-height: 320px;
@@ -35,15 +35,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       :host(.open) {
         /*background-color: var(--paper-purple-500);*/
-        position: absolute;
+        position: fixed;
         bottom: 0;
         background-color: rgba(64,64,64,0);
         min-height: 320px;
       }
 
-      paper-button {
-        color: var(--paper-purple-50);
-      }
 
       #background {
         display: block;
@@ -55,13 +52,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         transform-origin: 100vw 100vh;
         box-shadow: 0px -10px 50px 10px rgb(0,0,0,0.5);
-        background-color: rgba(64,64,64,1);
+        background-color: rgba(100,100,100,0.95);
       }
 
       na-note {
         display: block;
         position: relative;
-        bottom: calc(100vh- 320px);
+        top: 10px;
+        /*bottom: calc(100vh- 320px);*/
         left: 0;
       }
 
@@ -112,8 +110,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
     <div id="background"></div>
-    <na-note id="note" title="{{note.title}}" createDate="{{note.createDate}}" body="{{note.body}}" author="{{note.author}}" editable></na-note>
-	    <div class = "requirements">
+    <na-note id="note"
+      title="{{note.title}}"
+      createDate="{{note.createDate}}"
+      body="{{note.body}}"
+      author="{{note.author}}"
+      targetBid="{{note.targetBid}}"
+      editable>
+    </na-note>
+
+      <div class = "requirements">
             <table >
               <tbody>
                 <tr>
@@ -183,9 +189,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         else{username="Anonymous";}
 
         this._setOpened(true);
-        this.note = { title: '', createDate: '', body: '' , author: '' };
+        this.note = { title: '', createDate: '', body: '' , author: '' , targetBid: '' };
         this.note.author = username;
         this.note.createDate = cdate;
+        this.note.targetBid = '';
         this.transitionInFrom(this.getBoundingClientRect(),false);
       },
 

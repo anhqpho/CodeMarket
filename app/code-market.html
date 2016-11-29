@@ -20,6 +20,7 @@
       </style>
 
       <!-- Leaving here for now until sign out button is implemented. Sign-in breaks when I remove the NA stuff. -->
+      <!--<div style="position: fixed;">-->
       <na-toolbar
         id="main_toolbar"
         signed-in="[[signedIn]]"
@@ -27,6 +28,7 @@
         tab-selected ="{{tabSelected}}"
         user="{{user}}">
       </na-toolbar>
+
 
       <na-login
         on-sign-in="signIn"
@@ -42,6 +44,7 @@
         user="{{user}}">
       </firebase-auth>
 
+<!--<div style="position: fixed; top: 224px; width: 100vw; overflow-y: scroll;">-->
       <iron-pages id="content" selected="{{tabSelected}}">
         <div>
           <bidding-platform user="{{user}}"> </bidding-platform>
@@ -97,6 +100,7 @@
           <paper-button raised on-click="refresh"> REFRESH </paper-button>
         </div>
       </iron-pages>
+
 
   </template>
         <body onload="refresh">
