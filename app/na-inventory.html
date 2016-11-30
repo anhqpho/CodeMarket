@@ -39,6 +39,8 @@
 
     <firebase-query
       id="query"
+      order-by-child="author"
+      equal-to="[[user.displayName]]"
       app-name="CodeMarket"
       path="/notes"
       data="{{notes}}">
