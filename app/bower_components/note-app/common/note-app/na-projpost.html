@@ -93,7 +93,7 @@
         class$="[[emptyClass(title, editable)]]"
         contenteditable$="[[editable]]"></h1>
 
-    <h3 id="createDate" ></h3>
+
     <h2 id="author" class$="[[emptyClass(author, editable)]]"></h2>
     <p
         id="body"
@@ -102,7 +102,7 @@
       </div>
 
     <div style="display: block; width: 18vw; float: left; border-left: dashed thin; boder-color: rgb(128,128,128);">
-      <h4>$</h4><h4 id="targetBid" style="margin-right: 0.1em; float: left;" class$="[[emptyClass( targetBid )]]"> </h4>
+      <h4 id="targetbid" style="margin-right: 0.1em;" class$="[[emptyClass( targetbid )]]"> </h4>
       <paper-button id="bidButton" raised on-click="">
         Place Bid
       </paper-button><br>
@@ -129,7 +129,7 @@
           value: ''
         },
 
-        createDate: {
+        createdate: {
           type: String,
           notify: false,
           value: ''
@@ -147,7 +147,7 @@
           value: ''
         },
 
-        targetBid: {
+        targetbid: {
           type: String,
           notify: true,
           value: ''
@@ -164,7 +164,7 @@
       },
 
       observers: [
-        'updateTextContent(title, createDate, body, author , targetBid )'
+        'updateTextContent(title, createdate, body, author , targetbid )'
       ],
 
       emptyClass(content, editable) {
@@ -184,12 +184,12 @@
         return true;
       },
 
-      updateTextContent(title, createDate, body , author , targetBid ) {
+      updateTextContent(title, createdate, body , author , targetbid ) {
         console.log(arguments);
         this.$.title.textContent = title;
         this.$.body.textContent = body;
-        this.$.author.textContent = "created "+createDate+" by "+author;
-        this.$.targetBid.textContent = targetBid;
+        this.$.author.textContent = "created "+createdate+" by "+author;
+        this.$.targetbid.textContent = "$"+targetbid;
       },
 
       onInput() {

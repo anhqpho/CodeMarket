@@ -78,13 +78,12 @@
         class$="[[emptyClass(title, editable)]]"
         contenteditable$="[[editable]]"></h1>
 
-    <h3 id="createDate" ></h3>
     <h2 id="author" class$="[[emptyClass(author , editable )]]"></h2>
     <p
         id="body"
         class$="[[emptyClass(body, editable)]]"
         contenteditable$="[[editable]]"></p>
-    <h4>$</h4><h4 id="targetBid" class$="[[emptyClass(targetBid, editable)]]"
+    <h4 style="float: left;">$</h4><h4 id="targetbid" style="float: left;" class$="[[emptyClass(targetbid, editable)]]"
     contenteditable$="[[editable]]"> </h4>
   </template>
   <script>
@@ -104,7 +103,7 @@
           value: ''
         },
 
-        createDate: {
+        createdate: {
           type: String,
           notify: false,
           value: ''
@@ -122,7 +121,7 @@
           value: ''
         },
 
-        targetBid: {
+        targetbid: {
           type: String,
           notify: true,
           value: ''
@@ -139,7 +138,7 @@
       },
 
       observers: [
-        'updateTextContent(title, createDate, body, author , targetBid )'
+        'updateTextContent(title, createdate, body, author , targetbid )'
       ],
 
       emptyClass(content, editable) {
@@ -159,19 +158,19 @@
         return true;
       },
 
-      updateTextContent(title, createDate, body , author , targetBid ) {
+      updateTextContent(title, createdate, body , author , targetbid ) {
         console.log(arguments);
         this.$.title.textContent = title;
         this.$.body.textContent = body;
-        this.$.author.textContent = "created "+createDate+"by "+author;
-        this.$.targetBid.textContent = targetBid;
+        this.$.author.textContent = "created "+createdate+" by "+author;
+        this.$.targetbid.textContent = targetbid;
       },
 
       onInput() {
         this.async(function() {
           this.title = this.$.title.innerText;
           this.body = this.$.body.innerText;
-          this.targetBid.value = "100";// this.$.targetBid.innerText;
+          this.targetbid = this.$.targetbid.innerText;
         });
       }
     })

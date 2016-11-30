@@ -112,10 +112,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div id="background"></div>
     <na-note id="note"
       title="{{note.title}}"
-      createDate="{{note.createDate}}"
+      createDate="{{note.createdate}}"
       body="{{note.body}}"
       author="{{note.author}}"
-      targetBid="{{note.targetBid}}"
+      targetbid="{{note.targetbid}}"
       editable>
     </na-note>
 
@@ -189,10 +189,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         else{username="Anonymous";}
 
         this._setOpened(true);
-        this.note = { title: '', createDate: '', body: '' , author: '' , targetBid: '' };
+        this.note = { title: '', createdate: '', body: '' , author: '' , targetbid: '' };
         this.note.author = username;
-        this.note.createDate = cdate;
-        this.note.targetBid = '';
+        this.note.createdate = cdate;
+        this.note.targetbid = '';
         this.transitionInFrom(this.getBoundingClientRect(),false);
       },
 
