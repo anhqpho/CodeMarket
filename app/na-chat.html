@@ -1,5 +1,6 @@
 <link rel="import" href="bower_components/paper-input/paper-input.html">
 <link rel="import" href="bower_components/paper-button/paper-button.html">
+<link rel="import" href="bower_components/polymerfire/polymerfire.html">
 
 
 <dom-module id="na-chat">
@@ -32,7 +33,7 @@
 
     <div id="message-form">
       <paper-input label="Message" id="message-input"></paper-input>
-      <paper-button id="send-message"> Send </paper-button>
+      <paper-button id="send-message" raised on-click="send"> Send </paper-button>
     </div>
 
   </template>
@@ -41,7 +42,21 @@
     Polymer({
       is: 'na-chat',
       properties: {
-        user: Object
+        user: Object,
+        messageRef: Object,
+        chatId: String
+      },
+
+      send: function() {
+          var database = firebase.database();
+          var text = this.$.message-input.value;
+          this.messageRef = database.ref('message/' + this.chat-id)
+
+          this.messageRef.push({
+              name: this.user.displayName,
+              text: text
+          });
+
       }
     });
   </script>
