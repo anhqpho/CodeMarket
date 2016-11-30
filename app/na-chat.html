@@ -50,13 +50,15 @@
       send: function() {
           var database = firebase.database();
           var text = this.$.message-input.value;
-          this.messageRef = database.ref('message/' + this.chat-id)
+          if (text && test != "" ) {
+              this.messageRef = database.ref('message/' + this.chat-id)
 
-          this.messageRef.push({
-              name: this.user.displayName,
-              text: text
-          });
-
+              this.messageRef.push({
+                  name: this.user.displayName,
+                  text: text
+              });
+              this.$.message-input.value = null;
+          }
       }
     });
   </script>
