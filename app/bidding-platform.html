@@ -18,7 +18,7 @@
     <firebase-query
       id="query"
       app-name="CodeMarket"
-      path="/notes/[[user.uid]]"
+      path="/notes"
       data="{{notes}}">
     </firebase-query>
 
@@ -32,6 +32,7 @@
     <div class="notes">
       <template is="dom-repeat" items="{{persistedNotes}}" as="note">
         <na-projpost
+
             id$="[[note.$key]]"
             title="[[note.title]]"
             createDate="[[note.createDate]]"
@@ -39,6 +40,7 @@
             author="{{note.author}}"
             targetBid="{{note.targetBid}}"
             on-tap="">
+
         </na-projpost>
       </template>
     </div>
@@ -55,7 +57,7 @@
       },
 
       get notesPath() {
-        return '/notes/' + this.user.uid;
+        return '/notes';
       },
 
       toEditableId: function(noteId) {
